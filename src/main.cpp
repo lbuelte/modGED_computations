@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
 #include "../include/distance_lin.h"
 #include "../include/binary_io.h"
 #include "../include/shapefile_io_operations.h"
