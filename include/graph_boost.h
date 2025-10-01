@@ -54,20 +54,9 @@ using boost::polygon::voronoi_diagram;
 //typedef boost::geometry::model::point<double, 2, boost::geometry::cs::cartesian> Point;
 
 
-
-
-
-
-
-
-
-
 namespace bg = boost::geometry;
 namespace bgm = bg::model;
 namespace bgs = bg::strategy;
-
-
-
 
 
 using namespace boost;
