@@ -11,4 +11,3 @@ build/
 input/
 .vscode/
 gurobi.log
-

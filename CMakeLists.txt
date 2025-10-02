@@ -50,17 +50,7 @@ link_directories(${GUROBI_HOME}/lib)
 set(sources
         src/main.cpp
         src/modGED.cpp
-        include/modGED.h
-        src/distance_lin.cpp 
-        include/distance_lin.h
-        include/binary_io.h
-        include/graph_boost.h
-        src/binary_io.cpp
         src/graph.cpp
-        include/shapefile_io_operations.h
-        src/shapefile_io_operations.cpp
-        include/hierachicalClustering3.h
-        src/hierachicalClustering3.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${sources})
