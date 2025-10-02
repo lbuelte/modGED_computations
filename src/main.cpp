@@ -6,10 +6,8 @@
 #include "modGED.h"
 #include "binary_io.h"
 #include "plots_and_stats.h"
-#include "hierachicalClustering3.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 Graph_boost testgraph1() {
     Graph_boost G;
     Point_boost p1 = {0, 0},
@@ -120,7 +118,6 @@ Graph_boost testgraph4() {
 
 int main() {    
     std::vector<Graph_boost> testgraphs, medialaxesgraphs;
-    std::vector<int> resultVec;
     testgraphs.push_back(testgraph1());
     testgraphs.push_back(testgraph2());
     testgraphs.push_back(testgraph3());
@@ -131,14 +128,9 @@ int main() {
     // assert(std::fabs(modGED_f2plus - modGED_fori) < 1e-10);
     // std::cout << "Test modGED: F2Plus : " << modGED_f2plus << " , FORI : " << modGED_fori << std::endl;
 
-    //std::cout<<distanceVal_lin3(testgraphs[0], testgraphs[1], 1, 1, 1)<<std::endl;
-    //distance(testgraphs[0], testgraphs[1], 1, 1, 1);
-
     readGraphVectorFromBin(medialaxesgraphs, "input/medial_axes_bonn.bin");
     std::cout << "Number of medial axes graphs: " << medialaxesgraphs.size() << std::endl;
-
-    
-
+  
     size_t num_instances = 10;
     size_t starting_instance = 0;
 
@@ -188,126 +180,8 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
     // std::cout << "Time for FORI on " << num_instances << " instances : " << duration.count() << std::endl;
     global_stats.duration_count_fori = duration.count();
-    global_stats.print_stats();
-    global_stats.print_TO_instances();
-
-
-    // std::vector<Graph_boost> medialAxes;
-    // readGraphVectorFromBin(medialAxes, "../input/endenich.bin");
-    // //readGraphVectorFromBin(medialAxes, "../input/zentrum.bin");
-    // //writeToShapeFile(medialAxes, "../output/osmdings", 0.0);
-    // int i = 0;
-    // for (auto const &graph: medialAxes) {
-    //     // if(num_vertices(graph)<100) std::cout<<i<< " :   "<< num_vertices(graph)<<std::endl;
-    //     medialaxesgraphs.push_back(graph);
-    //     i++;
-    //     if (i == 50) break;
-    // }
-    // //testgraphs.push_back(simplifyGraphPaths(medialAxes[817], 1));
-    // //testgraphs.push_back(simplifyGraphPaths(medialAxes[818], 1));
-    // double edgeSum, longestCurr;
-    // std::vector<double> edgeSums;
-    // std::vector<double> longest;
-    std::cout << "Checkpoint1\n";
-    /*for (auto graph: medialAxes) {
-        //auto nextrgraph = simplifyGraphPathsWithEdgeSum(graph, 1, edgeSum, longestCurr);
-        auto nextrgraph5 = simplifyAndFilterGraphPathsWithEdgeSum(graph, 1, edgeSum, longestCurr, 0.00);
-        auto nextrgraph10 = simplifyAndFilterGraphPathsWithEdgeSum(graph, 1, edgeSum, longestCurr, 0.18);
-        auto nextrgraph20 = simplifyAndFilterGraphPathsWithEdgeSum(graph, 1, edgeSum, longestCurr, 0.35);
-
-        auto nextrgraph30 = simplifyAndFilterGraphPathsWithEdgeSum(graph, 1, edgeSum, longestCurr, 0.7);
-
-        //std::cout<< "Checkpoint2\n";
-        //std::cout<< num_edges(graph)-num_edges(resultVec[i])<<std::endl;
-        graphVec5.push_back(nextrgraph5);
-        graphVec10.push_back(nextrgraph10);
-        graphVec20.push_back(nextrgraph20);
-        graphVec30.push_back(nextrgraph30);
-
-        edgeSums.push_back(edgeSum);
-        longest.push_back(longestCurr);
-
-    }*/
-
-
-
-    //writeToShapeFile(medialAxes, "../output/osmdings_org", 0.0);
-    //graphVec3.push_back(medialaxesgraphs[5]);
-    //graphVec3.push_back(medialaxesgraphs[19]);
-    //std::cout<< num_edges(medialaxesgraphs[342])<<std::endl;
-    //std::cout<< num_edges(medialaxesgraphs[1923])<<std::endl;
-    /*resultVec.push_back(simplifyGraphPaths(medialAxes[0], 1));
-    resultVec.push_back(simplifyGraphPaths(medialAxes[1], 1));
-
-    std::cout<<num_vertices(resultVec[0])<<"   "<<num_vertices(resultVec[1])<<std::endl;
-    std::cout<<num_edges(resultVec[0])<<"   "<<num_edges(resultVec[1])<<std::endl;
-    std::cout<<num_vertices(medialAxes[0])<<"   "<<#include <fstream>num_vertices(medialAxes[1])<<std::endl;
-    std::cout<<num_edges(medialAxes[0])<<"   "<<num_edges(medialAxes[1])<<std::endl;*/
-
-
-    //std::cout<<distanceVal_lin3(graphVec3[0], graphVec3[1], 1, 1, 1)<<std::endl;
-
-    //std::cout<< num_edges(resultVec[0])<<std::endl;
-    //resultVec=kMedianClustering(testgraphs, 4);
-    // std::cout << "Berechnung geglückt\n";
-
-    //MultiPolygon_boost source;
-    //ReadShapeFile("../input/shp/osm_siegburg", source);
-    //writeToShapeFile(source, testgraphs, "../output/osmdings_smpl");
-    //writeToShapeFile(medialAxes, "../output/osmdings_smpl2", 0.0);
-    //writeToShapeFile(medialaxesgraphs, "../output/osmdings_smpl", 0.0);
-    //writeToShapeFile(graphVec5, "../output/endenich_5", 0.0);
-    //writeToShapeFile(graphVec10, "../output/endenich_10", 0.0);
-    //writeToShapeFile(graphVec20, "../output/endenich_20", 0.0);
-    //writeToShapeFile(graphVec30, "../output/endenich_30", 0.0);
-    //writeToShapeFile(medialAxes, "../output/endenich_30_2", 0.54);
-
-    //auto stuff = kMedoidsWithSampling(graphVec5, 3, 100, edgeSums, longest, 5, "../output/endenich00.txt");
-    //auto stuff1 = kMedoidsWithSampling(graphVec10, 3, 100, edgeSums, longest, 5, "../output/endenich10.txt");
-    //auto stuff2 = kMedoidsWithSampling(graphVec20, 3, 100, edgeSums, longest, 5, "../output/endenich20.txt");
-    //auto stuff3 = kMedoidsWithSampling(graphVec30, 3, 100, edgeSums, longest, 5, "../output/endenich30.txt");
-    //auto stuff = clarans(medialaxesgraphs, 3, edgeSums, longest, 5, 250);
-    // std::ofstream datei("../output/timelogTotalh1k3zentrum.txt", std::ios::app);
-    // if (!datei) {
-    //     std::cerr << "Fehler beim Öffnen der Datei!\n";
-    //     return 1;
-    // }
-    // auto start = std::chrono::high_resolution_clock::now();
-    // //auto stuff = get_hierarchicalClustering(medialAxes, 1, 3, 1, 0.87, "../output/endenich50h1.txt");
-    // auto stuff = get_hierarchicalClustering(medialAxes, 2, 2, 1, 0.7, "../output/zentrum40h2.txt");
-    // auto ende = std::chrono::high_resolution_clock::now();
-    // auto dauer = std::chrono::duration_cast<std::chrono::milliseconds>(ende - start);
-
-    // datei << "10    " << dauer.count() << std::endl;
-    // start = std::chrono::high_resolution_clock::now();
-    // auto stuff1 = get_hierarchicalClustering(medialAxes, 1, 4, 1, 0.7, "../output/zentrum40k4.txt");
-    // ende = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(ende - start);
-    // datei << "0    " << dauer.count() << std::endl;
-    // /*start = std::chrono::high_resolution_clock::now();
-    // auto stuff2 = get_hierarchicalClustering(medialAxes, 1, 3, 1, 0.52, "../output/zentrum30h1.txt");
-    // ende = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(ende - start);
-    // datei << "30    " << dauer.count() << std::endl;
-    // start = std::chrono::high_resolution_clock::now();
-    // auto stuff3 = get_hierarchicalClustering(medialAxes, 1, 3, 1, 0.35, "../output/zentrum20h1.txt");
-    // ende = std::chrono::high_resolution_clock::now();
-    // dauer = std::chrono::duration_cast<std::chrono::milliseconds>(ende - start);
-    // datei << "20    " << dauer.count() << std::endl;*/
-    // datei.close();
-    //auto stuff = get_hierarchicalClustering(medialaxesgraphs, 2, 3, 1);
-
-    //std::vector<int> clsut = run_clustering_pipeline(medialaxesgraphs, 3, 5, 0.5);
-
-    //writeToShapeFile(testgraphs, "../output/example", 0.0);
-    //distance(medialAxes[342], medialAxes[1923], 1, 1, 1);
-    /*std::vector<Graph_boost> exmplGraph = {testgraph3()};
-    writeToShapeFile(exmplGraph, "../output/osmdings_org", 0.0);
-    simplifyGraphPaths(exmplGraph[0], 0.1);
-    writeToShapeFile(exmplGraph, "../output/osmdings_smpl", 0.0);*/
-
-
-
+    global_stats.print_fori_stats();
+    global_stats.print_fori_TO_instances();
 
     return EXIT_SUCCESS;
 }
